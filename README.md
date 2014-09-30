@@ -1,0 +1,1 @@
+`curl -o bootstrap.sh -L https://raw.githubusercontent.com/Intelliplan/osx/master/bootstrap.sh && chmod +x bootstrap.sh && ./bootstrap.sh`
