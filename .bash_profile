@@ -4,6 +4,9 @@ export LANG=en_GB.UTF-8
 # Add homebrew's bin and `~/bin` to the `$PATH`
 export PATH="/usr/local/bin:$HOME/bin:$PATH"
 
+# Link Homebrew casks in `/Applications` rather than `~/Applications`
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/etc/Caskroom"
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
