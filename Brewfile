@@ -1,57 +1,56 @@
 # Make sure we’re using the latest Homebrew
-update
+brew update
 
 # Upgrade any already-installed formulae
-upgrade
+brew upgrade
 
 # Utilities
-install git
-install vcsh
-install mr
-install jq
-install ack
+brew install git
+brew install vcsh
+brew install mr
+brew install jq
+brew install ack
 
-install openssl
-install tree
-install ucspi-tcp    # http://cr.yp.to/ucspi-tcp.html
-install readline
+brew install openssl
+brew install tree
+brew install ucspi-tcp    # http://cr.yp.to/ucspi-tcp.html
+brew install readline
 
-install rbenv
-install ruby-build
-install rbenv-gem-rehash
+brew install rbenv
+brew install ruby-build
+brew install rbenv-gem-rehash
 
 # Web Dev and Testing Tools
-install nginx
-install python
-install python3
-install erlang
-install tsung
-install nmap
-install sqlmap
-install ngrep
+brew install nginx
+brew install python
+brew install python3
+brew install erlang
+brew install tsung
+brew install nmap
+brew install sqlmap
+brew install ngrep
 
-install imagemagick --with-webp
-install node
+brew install imagemagick --with-webp
+brew install node
 
 # Preparing to install OS X Applications
-install caskroom/cask/brew-cask 
+brew install caskroom/cask/brew-cask 
 
-cask install onepassword
-cask install bittorrent-sync
-cask install firefox
-cask install caffeine
-cask install gpgtools
-cask install virtualbox
-cask install vagrant
-cask install iterm2
-cask install adium
-cask install vlc
-cask install disk-inventory-x
-cask install hipchat
-cask install spotify
+brew cask install onepassword
+brew cask install bittorrent-sync
+brew cask install firefox
+brew cask install caffeine
+brew cask install gpgtools
+brew cask install virtualbox
+brew cask install vagrant
+brew cask install iterm2
+brew cask install adium
+brew cask install vlc
+brew cask install disk-inventory-x
+brew cask install hipchat
+brew cask install spotify
 
 # trying out:
-cask install flux
+brew cask install flux
 
 tap caskroom/fonts
-
