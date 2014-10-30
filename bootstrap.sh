@@ -6,4 +6,5 @@ cd osx
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 cp .bash_profile ~/
 logout
-brew bundle
+chmod +x Brewfile
+./Brewfile
