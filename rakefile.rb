@@ -76,7 +76,7 @@ end
 
 desc "Installs common casks"
 task :casks do
-  %w[mou teamviewer dropbox spectacle royal-tsx parallels onepassword bittorrent-sync 
+  %w[mou teamviewer spectacle royal-tsx parallels onepassword bittorrent-sync 
     firefox caffeine colloquy gpgtools virtualbox vagrant iterm2 adium vlc
      disk-inventory-x hipchat spotify flux ].each do |c|
     cask c
@@ -95,9 +95,9 @@ task :git_config do
   git_config "push.default", "simple"
 
   user = ask_for "Git user name: "
-  git_config "user.name", "'Kristoffer Roupé'"
-  user = ask_for "Git user email: "
-  git_config "user.email", "'kitofr@gmail.com'"
+  git_config "user.name", "'#{user}'"
+  email = ask_for "Git user email: "
+  git_config "user.email", "'#{email}'"
 end
 
 desc "Sets computer name. Asks for input"
