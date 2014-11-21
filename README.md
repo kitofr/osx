@@ -17,7 +17,7 @@
  - Installs casks 
 
   ```
-  mou teamviewer spectacle royal-tsx parallels onepassword bittorrent-sync 
+  mou teamviewer dropbox spectacle royal-tsx parallels onepassword bittorrent-sync 
   firefox caffeine colloquy gpgtools virtualbox vagrant iterm2 adium vlc
   disk-inventory-x hipchat spotify flux
   ```
