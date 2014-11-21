@@ -22,6 +22,7 @@
   disk-inventory-x hipchat spotify flux
   ```
 
+ - Installs my dotfiles
  - Installs zshell
  - Asks and sets computer name
  - Asks and sets git name and email
