@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-task :default => [:xcode, :osx, :brews, :casks, :zshell, :ssh_keys, :dotfiles, :powerline, :pip, :git_config, :computer_name]
+task :default => [:xcode, :osx, :brews, :casks, :zshell, :rbenv_setup, :ssh_keys, :dotfiles, :powerline, :pip, :git_config, :computer_name]
 
 def curl what
   sh "curl -O #{what}" 
@@ -129,6 +129,11 @@ end
 desc "Installs Oh-my zshell"
 task :zshell do
   sh "curl -L http://install.ohmyz.sh | sh"
+end
+
+desc "Install new ruby with rbenv"
+task :rbenv_setup do
+  sh "rbenv install 2.1.3"
 end
 
 desc "Sets minimum git config. Asks for input"
