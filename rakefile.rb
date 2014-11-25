@@ -134,6 +134,8 @@ end
 desc "Install new ruby with rbenv"
 task :rbenv_setup do
   sh "rbenv install 2.1.3"
+  sh "rbenv rehash"
+  sh "rbenv global 2.1.3"
 end
 
 desc "Sets minimum git config. Asks for input"
