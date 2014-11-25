@@ -135,6 +135,7 @@ desc "Sets minimum git config. Asks for input"
 task :git_config do 
   git_config "core.editor", "/usr/bin/vim"
   git_config "push.default", "simple"
+  git_config "core.autocrlf", "true"
 
   user = ask_for "Git user name: "
   git_config "user.name", "'#{user}'"
