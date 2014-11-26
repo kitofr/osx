@@ -79,7 +79,7 @@ end
 
 desc "Installs common casks"
 task :casks do
-  %w[mou teamviewer dropbox spectacle royal-tsx parallels onepassword bittorrent-sync 
+  %w[mou teamviewer dropbox spectacle royal-tsx parallels-desktop onepassword bittorrent-sync 
     firefox google-chrome caffeine colloquy gpgtools virtualbox vagrant iterm2 adium vlc
      disk-inventory-x hipchat spotify flux ].each do |c|
     cask c
