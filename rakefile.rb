@@ -69,7 +69,7 @@ task :brews do
   sh "brew update"
   sh "brew upgrade"
   %w[awscli git vcsh mr jq ack openssl tree ucspi-tcp readline rbenv ruby-build 
-    nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt
+    nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt postgresql
     rbenv-gem-rehash leiningen wget tmux elixir elixir-build].each do |r|
     brew r
   end
