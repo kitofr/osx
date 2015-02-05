@@ -69,7 +69,7 @@ task :brews do
   sh "brew update"
   sh "brew upgrade"
   %w[awscli git vcsh mr jq ack openssl tree ucspi-tcp readline rbenv ruby-build 
-    nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt postgresql
+    heroku-toolbelt nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt postgresql
     htop rlwrap weechat rbenv-gem-rehash leiningen wget tmux elixir elixir-build].each do |r|
     brew r
   end
@@ -79,9 +79,9 @@ end
 
 desc "Installs common casks"
 task :casks do
-  %w[mou teamviewer dropbox spectacle royal-tsx parallels-desktop onepassword bittorrent-sync 
-    firefox google-chrome caffeine colloquy gpgtools virtualbox vagrant iterm2 adium vlc
-     disk-inventory-x hipchat spotify flux ].each do |c|
+  %w[mou dropbox spectacle 1password bittorrent-sync 
+    firefox google-chrome caffeine gpgtools vagrant iterm2 vlc
+     disk-inventory-x slack spotify flux ].each do |c|
     cask c
   end
   sh "brew tap caskroom/fonts"
@@ -100,10 +100,10 @@ task :ssh_keys do
   STDIN.gets.strip
   home = Dir.home
   Dir.mkdir "#{home}/.ssh" unless Dir.exists? "#{home}/.ssh"
-  soft_link "#{home}/Dropbox/Private/ssh/github_rsa", "#{home}/.ssh/github_rsa"
-  sh "chmod 400 ~/.ssh/github_rsa"
-  soft_link "#{home}/Dropbox/Private/ssh/id_rsa", "#{home}/.ssh/id_rsa"
-  sh "chmod 400 ~/.ssh/id_rsa"
+  ['heroku', 'github_rsa', 'id_rsa'].each do |key|
+    soft_link "#{home}/Dropbox/Private/ssh/#{key}", "#{home}/.ssh/#{key}"
+    sh "chmod 400 ~/.ssh/#{key}"
+  end
 end
 
 task :dotfiles do
@@ -136,6 +136,7 @@ task :rbenv_setup do
   sh "rbenv install 2.1.3"
   sh "rbenv rehash"
   sh "rbenv global 2.1.3"
+  sh "gem install bundler" #otherwise bundler will be sudoed
 end
 
 desc "Sets minimum git config. Asks for input"
