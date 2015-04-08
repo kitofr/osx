@@ -3,7 +3,7 @@
 task :default => [:xcode, :osx, :brews, :casks, :zshell, :rbenv_setup, :ssh_keys, :dotfiles, :powerline, :pip, :git_config, :computer_name]
 
 def curl what
-  sh "curl -O #{what}" 
+  sh "curl -O #{what}"
 end
 
 def brew what
@@ -20,12 +20,12 @@ def in_dir dir
     Dir.chdir dir
     yield if block_given?
   ensure
-    Dir.chdir pwd 
+    Dir.chdir pwd
   end
 end
 
 def soft_link(source, dst)
-  sh "rm -fr #{dst}" 
+  sh "rm -fr #{dst}"
   sh "ln -s #{source} #{dst}"
 end
 
@@ -44,7 +44,7 @@ end
 
 desc "Installs xcode. Waits for input while installer is running"
 task :xcode do
-  begin 
+  begin
     sh "xcode-select --install"
   rescue
     puts "Looks like xcode failed... was it already installed?"
@@ -68,7 +68,7 @@ desc "Updates, upgrades and installs brews"
 task :brews do
   sh "brew update"
   sh "brew upgrade"
-  %w[awscli git vcsh mr jq ack openssl tree ucspi-tcp readline rbenv ruby-build 
+  %w[awscli git vcsh mr jq ack openssl hub tree ucspi-tcp readline rbenv ruby-build
     heroku-toolbelt nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt postgresql
     htop rlwrap weechat rbenv-gem-rehash leiningen wget tmux elixir elixir-build].each do |r|
     brew r
@@ -79,9 +79,8 @@ end
 
 desc "Installs common casks"
 task :casks do
-  %w[mou dropbox spectacle 1password bittorrent-sync 
-    firefox google-chrome caffeine gpgtools vagrant iterm2 vlc
-     disk-inventory-x slack spotify flux ].each do |c|
+  %w[dropbox spectacle 1password bittorrent-sync firefox google-chrome caffeine gpgtools vagrant iterm2 vlc
+     disk-inventory-x slack spotify flux gimp].each do |c|
     cask c
   end
   sh "brew tap caskroom/fonts"
@@ -92,7 +91,7 @@ desc "Installs global npm packages"
 task :npms do
   %w[neochrome/marky bower].each do |p|
     npm p
-  end  
+  end
 end
 
 task :ssh_keys do
@@ -140,7 +139,7 @@ task :rbenv_setup do
 end
 
 desc "Sets minimum git config. Asks for input"
-task :git_config do 
+task :git_config do
   git_config "core.editor", "/usr/bin/vim"
   git_config "push.default", "simple"
   git_config "core.autocrlf", "false"
