@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-task :default => [:xcode, :osx, :brews, :casks, :zshell, :rbenv_setup, :ssh_keys, :dotfiles, :powerline, :pip, :git_config, :computer_name]
+task :default => [ :zshell, :rbenv_setup, :ssh_keys, :dotfiles, :powerline, :pip, :git_config, :computer_name]
 
 def curl what
-  sh "curl -O #{what}"
+  sh "curl -O #{what}" 
 end
 
 def brew what
@@ -20,12 +20,12 @@ def in_dir dir
     Dir.chdir dir
     yield if block_given?
   ensure
-    Dir.chdir pwd
+    Dir.chdir pwd 
   end
 end
 
 def soft_link(source, dst)
-  sh "rm -fr #{dst}"
+  sh "rm -fr #{dst}" 
   sh "ln -s #{source} #{dst}"
 end
 
@@ -44,7 +44,7 @@ end
 
 desc "Installs xcode. Waits for input while installer is running"
 task :xcode do
-  begin
+  begin 
     sh "xcode-select --install"
   rescue
     puts "Looks like xcode failed... was it already installed?"
@@ -66,10 +66,10 @@ end
 
 desc "Updates, upgrades and installs brews"
 task :brews do
-  sh "brew update"
+  #sh "brew update"
   sh "brew upgrade"
-  %w[awscli git vcsh mr jq ack openssl hub tree ucspi-tcp readline rbenv ruby-build
-    heroku-toolbelt nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt postgresql
+  %w[awscli git vcsh mr jq ack openssl tree ucspi-tcp readline rbenv ruby-build 
+    nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt postgresql
     htop rlwrap weechat rbenv-gem-rehash leiningen wget tmux elixir elixir-build].each do |r|
     brew r
   end
@@ -79,8 +79,9 @@ end
 
 desc "Installs common casks"
 task :casks do
-  %w[dropbox spectacle 1password bittorrent-sync firefox google-chrome caffeine gpgtools vagrant iterm2 vlc
-     disk-inventory-x slack spotify flux gimp].each do |c|
+  %w[mou dropbox spectacle bittorrent-sync firefox 
+     google-chrome caffeine gpgtools vagrant iterm2 vlc
+     disk-inventory-x slack spotify flux ].each do |c|
     cask c
   end
   sh "brew tap caskroom/fonts"
@@ -91,7 +92,7 @@ desc "Installs global npm packages"
 task :npms do
   %w[neochrome/marky bower].each do |p|
     npm p
-  end
+  end  
 end
 
 task :ssh_keys do
@@ -99,10 +100,10 @@ task :ssh_keys do
   STDIN.gets.strip
   home = Dir.home
   Dir.mkdir "#{home}/.ssh" unless Dir.exists? "#{home}/.ssh"
-  ['heroku', 'github_rsa', 'id_rsa'].each do |key|
-    soft_link "#{home}/Dropbox/Private/ssh/#{key}", "#{home}/.ssh/#{key}"
-    sh "chmod 400 ~/.ssh/#{key}"
-  end
+  soft_link "#{home}/Dropbox/Private/ssh/github_rsa", "#{home}/.ssh/github_rsa"
+  sh "chmod 400 ~/.ssh/github_rsa"
+  soft_link "#{home}/Dropbox/Private/ssh/id_rsa", "#{home}/.ssh/id_rsa"
+  sh "chmod 400 ~/.ssh/id_rsa"
 end
 
 task :dotfiles do
@@ -122,7 +123,7 @@ task :powerline do
 end
 
 task :pip do
-  sh "pip install pygments"
+  sh "pip install pygments rainbowcolors"
 end
 
 desc "Installs Oh-my zshell"
@@ -135,11 +136,10 @@ task :rbenv_setup do
   sh "rbenv install 2.1.3"
   sh "rbenv rehash"
   sh "rbenv global 2.1.3"
-  sh "gem install bundler" #otherwise bundler will be sudoed
 end
 
 desc "Sets minimum git config. Asks for input"
-task :git_config do
+task :git_config do 
   git_config "core.editor", "/usr/bin/vim"
   git_config "push.default", "simple"
   git_config "core.autocrlf", "false"
