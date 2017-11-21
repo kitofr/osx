@@ -1,6 +1,13 @@
 #!/usr/bin/ruby
 
-task :default => [ :zshell, :rbenv_setup, :ssh_keys, :dotfiles, :powerline, :pip, :git_config, :computer_name]
+task :default => [
+  :zshell,
+  :rbenv_setup,
+  :ssh_keys,
+  :dotfiles,
+  :powerline,
+  :git_config,
+  :computer_name]
 
 def curl what
   sh "curl -O #{what}"
@@ -56,7 +63,7 @@ end
 
 desc "Sets some osx prefered settings"
 task :osx do
-  `git clone https://github.com/intelliplan/osx.git`
+  `git clone https://github.com/kitofr/osx.git`
   in_dir "osx" do
     sh "./.osx"
     sh 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
@@ -69,8 +76,8 @@ task :brews do
   #sh "brew update"
   sh "brew upgrade"
   %w[awscli git vcsh mr jq ack openssl tree ucspi-tcp readline rbenv ruby-build
-    nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt postgresql
-    reattach-to-user-namespace htop rlwrap weechat rbenv-gem-rehash leiningen
+    nginx python python3 erlang tsung nmap sqlmap ngrep node mc mutt
+    reattach-to-user-namespace htop rlwrap rbenv-gem-rehash leiningen zsh-syntax-highlighting
     wget tmux elixir elixir-build].each do |r|
     brew r
   end
@@ -80,21 +87,14 @@ end
 
 desc "Installs common casks"
 task :casks do
-  %w[mou dropbox spectacle bittorrent-sync firefox
-     google-chrome caffeine gpgtools vagrant iterm2 vlc
-     disk-inventory-x slack spotify flux ].each do |c|
+  %w[macdown dropbox spectacle
+     caffeine gpg-suite docker iterm2 vlc
+     disk-inventory-x spotify flux ].each do |c|
     cask c
   end
   sh "brew tap caskroom/fonts"
 end
 
-
-desc "Installs global npm packages"
-task :npms do
-  %w[neochrome/marky bower].each do |p|
-    npm p
-  end
-end
 
 task :ssh_keys do
   puts "Please sign in to your dropbox folder before you continue"
@@ -123,9 +123,6 @@ task :powerline do
   end
 end
 
-task :pip do
-  sh "pip install pygments rainbowcolors"
-end
 
 desc "Installs Oh-my zshell"
 task :zshell do
