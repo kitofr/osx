@@ -75,10 +75,45 @@ desc "Updates, upgrades and installs brews"
 task :brews do
   #sh "brew update"
   sh "brew upgrade"
-  %w[awscli git vcsh mr jq ack openssl tree ucspi-tcp readline rbenv ruby-build
-    nginx python erlang tsung nmap sqlmap ngrep node mc mutt z hub watch
-    reattach-to-user-namespace htop rlwrap rbenv-gem-rehash leiningen zsh-syntax-highlighting
-    wget tmux elixir elixir-build].each do |r|
+  %w[
+  ack
+  awscli
+  elixir
+  elixir-build
+  erlang
+  git
+  htop
+  hub
+  jq
+  leiningen
+  mc
+  mr
+  mutt
+  ngi
+  ngrep
+  nmap
+  node
+  nx
+  openssl
+  python
+  rbenv
+  rbenv-gem-rehash
+  readline
+  reattach-to-user-namespace
+  rg
+  rlwrap
+  ruby-build
+  sqlmap
+  tmux
+  tree
+  tsung
+  ucspi-tcp
+  vcsh
+  watch
+  wget
+  z
+  zsh-syntax-highlighting
+    ].each do |r|
     brew r
   end
   brew "imagemagick --with-webp"
